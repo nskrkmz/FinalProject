@@ -5,14 +5,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="stylesheet" href="style/SignIn.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	   
     <script
       src="https://kit.fontawesome.com/64d58efce2.js"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="style/SignIn.css" />
     
+    <link rel="icon" href="image/favicon.ico" type="image/x-icon" />
     <title>Sign in & Sign up Form</title>
   </head>
   <body>
@@ -34,7 +36,7 @@
             
            <!--sign up form -------------------------------------------- -->
           </form>
-          <form action="#" class="sign-up-form">
+          <form action="insert" class="sign-up-form">
             <h2 class="title">Sign up</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
@@ -46,7 +48,7 @@
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Password" name="password" value="<c:out value='${user.country}' />" />
+              <input type="password" placeholder="Password" name="password" value="<c:out value='${user.password}' />" />
             </div>
             <input type="submit" class="btn" value="Sign up" />
             
