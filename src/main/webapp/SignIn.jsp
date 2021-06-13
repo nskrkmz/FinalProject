@@ -3,18 +3,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
   <head>
-    <link rel="stylesheet" href="style/SignIn.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	   
+    
+    <style>
+		<%@include file="style/SignIn.css"%>
+	</style>
+   
     <script
       src="https://kit.fontawesome.com/64d58efce2.js"
       crossorigin="anonymous"
     ></script>
     
-    <link rel="icon" href="image/favicon.ico" type="image/x-icon" />
     <title>Sign in & Sign up Form</title>
   </head>
   <body>
@@ -84,7 +86,31 @@
         </div>
       </div>
     </div>
+	<script type="text/javascript">
+	const sign_in_btn = document.querySelector("#sign-in-btn");
+	const sign_up_btn = document.querySelector("#sign-up-btn");
+	const container = document.querySelector(".container");
+	window.onload=function(){
+	sign_up_btn.addEventListener("click", () => {
+	  container.classList.add("sign-up-mode");
+	});
 
-    <script src="js/index.js"></script>
+	sign_in_btn.addEventListener("click", () => {
+	  container.classList.remove("sign-up-mode");
+	});
+
+
+	$("#search-icon").click(function() {
+	  $(".nav").toggleClass("search");
+	  $(".nav").toggleClass("no-search");
+	  $(".search-input").toggleClass("search-active");
+	});
+
+	$('.menu-toggle').click(function(){
+	   $(".nav").toggleClass("mobile-nav");
+	   $(this).toggleClass("is-active");
+	});
+	}
+	</script>
   </body>
 </html>
