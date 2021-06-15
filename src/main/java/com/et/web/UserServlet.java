@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.et.dao.UserDao;
 import com.et.model.User;
+import com.et.dao.UrunDao;
+import com.et.model.Urun;
 
 /**
  * ControllerServlet.java
@@ -25,9 +27,11 @@ import com.et.model.User;
 public class UserServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private UserDao userDao;
+    private UrunDao urunDao;
 
     public void init() {
         userDao = new UserDao();
+        urunDao =new UrunDao();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -56,8 +60,26 @@ public class UserServlet extends HttpServlet {
                 case "/update":
                     updateUser(request, response);
                     break;
+                case "/newUrun":
+                    showNewFormUrun(request, response);
+                    break;
+                case "/insertUrun":
+                    insertUrun(request, response);
+                    break;
+                case "/deleteUrun":
+                    deleteUrun(request, response);
+                    break;
+                case "/editUrun":
+                    showEditFormUrun(request, response);
+                    break;
+                case "/updateUrun":
+                    updateUrun(request, response);
+                    break;
+                case "/listUser":
+                	listUser(request, response);
+                    break;
                 default:
-                    listUser(request, response);
+                    listUrun(request, response);
                     break;
             }
         } catch (SQLException ex) {
@@ -117,4 +139,62 @@ public class UserServlet extends HttpServlet {
         userDao.deleteUser(id);
         response.sendRedirect("list");
     }
+    
+    /////////////////////////////Urun's Functions//////////////////////////////////////////////
+    private void listUrun(HttpServletRequest request, HttpServletResponse response)
+    	    throws SQLException, IOException, ServletException {
+    	        List < Urun > listUrun= urunDao.getAllUrun();
+    	        request.setAttribute("listUrun", listUrun);
+    	        RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp");
+    	        dispatcher.forward(request, response);
+    	    }
+
+    	    private void showNewFormUrun(HttpServletRequest request, HttpServletResponse response)
+    	    throws ServletException, IOException {
+    	        RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
+    	        dispatcher.forward(request, response);
+    	    }
+
+    	    private void showEditFormUrun(HttpServletRequest request, HttpServletResponse response)
+    	    throws SQLException, ServletException, IOException {
+    	        int id = Integer.parseInt(request.getParameter("id"));
+    	        Urun existingUrun = urunDao.getUrun(id);
+    	        RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
+    	        request.setAttribute("urun", existingUrun);
+    	        dispatcher.forward(request, response);
+
+    	    }
+
+    	    private void insertUrun(HttpServletRequest request, HttpServletResponse response)
+    	    throws SQLException, IOException {
+    	        String name = request.getParameter("name");
+    	        String urunKodu = request.getParameter("urunKodu");
+    	        int alisFiyat =Integer.parseInt(request.getParameter("alisFiyat")); 
+    	        int satisFiyat =Integer.parseInt(request.getParameter("satisFiyat")); 
+    	        String urunDetay = request.getParameter("urunDetay");
+    	        Urun newUrun= new Urun(name,urunKodu,alisFiyat,satisFiyat,urunDetay);
+    	        urunDao.saveUrun(newUrun);
+    	        response.sendRedirect("Index.jsp");
+    	    }
+
+    	    private void updateUrun(HttpServletRequest request, HttpServletResponse response)
+    	    throws SQLException, IOException {
+    	        int id = Integer.parseInt(request.getParameter("id"));
+    	        String name = request.getParameter("name");
+    	        String urunKodu = request.getParameter("urunKodu");
+    	        int alisFiyat = Integer.parseInt( request.getParameter("alisFiyat"));
+    	        int satisFiyat = Integer.parseInt(request.getParameter("satisFiyat"));
+    	        String urunDetay = request.getParameter("urunDetay");
+
+    	        Urun urun = new Urun(id, name,urunKodu, alisFiyat, satisFiyat, urunDetay);
+    	        urunDao.updateUrun(urun);
+    	        response.sendRedirect("list");
+    	    }
+
+    	    private void deleteUrun(HttpServletRequest request, HttpServletResponse response)
+    	    throws SQLException, IOException {
+    	        int id = Integer.parseInt(request.getParameter("id"));
+    	        urunDao.deleteUrun(id);
+    	        response.sendRedirect("list");
+    	    }
 }

@@ -23,14 +23,20 @@ public class Urun {
  @Column(name="id")
  protected int urun_id;
  
- @Column(name="name")
+ @Column(name="adi")
  protected String urun_name;
+ 
+ @Column(name="urunKodu")
+ protected String urunKodu;
  
  @Column(name="alisFiyat")
  protected int alisFiyat;
  
  @Column(name="satisFiyat")
  protected int satisFiyat;
+ 
+ @Column(name="urunDetay")
+ protected String urunDetay;
  
  
  public Urun() {
@@ -50,6 +56,34 @@ public class Urun {
   this.alisFiyat = alisFiyat;
   this.satisFiyat = satisFiyat;
  }
+ 
+ public Urun(int id, String name, int alisFiyat, int satisFiyat,String urunKodu,String urunDetay) {
+	  super();
+	  this.urun_id = id;
+	  this.urun_name = name;
+	  this.alisFiyat = alisFiyat;
+	  this.satisFiyat = satisFiyat;
+	  this.urunKodu = urunKodu;
+	  this.urunDetay = urunDetay ; 
+	 }
+ public Urun( String name, String urunKodu,int alisFiyat, int satisFiyat,String urunDetay) {
+	  super();
+	  this.urun_name = name;
+	  this.urunKodu = urunKodu;
+	  this.alisFiyat = alisFiyat;
+	  this.satisFiyat = satisFiyat;
+	  
+	  this.urunDetay = urunDetay ; 
+	 }
+ public Urun( int id,String name, String urunKodu,int alisFiyat, int satisFiyat,String urunDetay) {
+	  super();
+	  this.urun_id = id;
+	  this.urun_name = name;
+	  this.urunKodu = urunKodu;
+	  this.alisFiyat = alisFiyat;
+	  this.satisFiyat = satisFiyat;
+	  this.urunDetay = urunDetay ; 
+	 }
 
  public int getId() {
   return urun_id;
@@ -75,4 +109,18 @@ public class Urun {
  public void setsatisFiyat(int satisFiyat) {
   this.satisFiyat = satisFiyat;
  }
+ public String geturunKodu() {
+  return urunKodu;
+}
+ public void seturunKodu(String urunKodu) {
+  this.urunKodu= urunKodu;
+}
+ public String geturunDetay() {
+  return urunDetay;
+}
+ public void seturunDetay(String urunDetay) {
+  this.urunDetay= urunDetay;
+}
+
+	 
 }
