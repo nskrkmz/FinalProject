@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -156,9 +158,7 @@
   <main id="main">
     <div class="container">
       <!-- Collection -->
-      
-
-      <!-- Latest Products -->
+      <!-- Products -->
       <section class="section latest__products" id="latest">
         <div class="title__container">
           <div class="section__title active" data-id="Latest Products">
@@ -170,34 +170,43 @@
           <div class="glide" id="glide_2">
             <div class="glide__track" data-glide-el="track">
               <ul class="glide__slides latest-center">
+              
+              
+              <c:forEach var="urun" items="${listUrun}">
+              
+              
                 <li class="glide__slide">
                   <div class="product">
                     <div class="product__header">
                       <img src="/images/products/iPhone/iphone6.jpeg" alt="product">
                     </div>
-                    <div class="product__footer">
-                      <h3>Apple iPhone 11</h3>
+                    <div class="product__footer"s>
+                      <h3><c:out value="${urun.name}"/></h3>
+                      <h6><c:out value="${urun.urunKodu}"/></h6>
                       <div class="rating">
                         <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
+                        
+                          
+                          <img src="images/sprite.svg#icon-star-full" alt="product">
+                          
                         </svg>
                         <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
+                          <img src="images/sprite.svg#icon-star-full" alt="product">
                         </svg>
                         <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
+                          <img src="images/sprite.svg#icon-star-full" alt="product">
                         </svg>
                         <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
+                          <img src="images/sprite.svg#icon-star-full" alt="product">
                         </svg>
                         <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-empty"></use>
+                          <img src="images/sprite.svg#icon-star-empty" alt="product">
                         </svg>
                       </div>
                       <div class="product__price">
-                        <h4>$750</h4>
+                        <h4><c:out value="${urun.satisFiyat}"/></h4>
                       </div>
-                      <a href="#"><button type="submit" class="product__btn">Add To Cart</button></a>
+                      <a href="#"><button type="submit" class="product__btn">Sepete Ekle</button></a>
                     </div>
                     <ul>
                       <li>
@@ -224,437 +233,8 @@
                     </ul>
                   </div>
                 </li>
-                <li class="glide__slide">
-                  <div class="product">
-                    <div class="product__header">
-                      <img src="/images/products/sumsung/samsung5.jpeg" alt="product">
-                    </div>
-                    <div class="product__footer">
-                      <h3>Samsung Galaxy</h3>
-                      <div class="rating">
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-empty"></use>
-                        </svg>
-                      </div>
-                      <div class="product__price">
-                        <h4>$900</h4>
-                      </div>
-                      <a href="#"><button type="submit" class="product__btn">Add To Cart</button></a>
-                    </div>
-                    <ul>
-                      <li>
-                        <a data-tip="Quick View" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-eye"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Wishlist" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-heart-o"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Compare" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-loop2"></use>
-                          </svg>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="glide__slide">
-                  <div class="product">
-                    <div class="product__header">
-                      <img src="/images/products/headphone/headphone4.jpeg" alt="product">
-                    </div>
-                    <div class="product__footer">
-                      <h3>Sony WH-CH510</h3>
-                      <div class="rating">
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-empty"></use>
-                        </svg>
-                      </div>
-                      <div class="product__price">
-                        <h4>$600</h4>
-                      </div>
-                      <a href="#"><button type="submit" class="product__btn">Add To Cart</button></a>
-                    </div>
-                    <ul>
-                      <li>
-                        <a data-tip="Quick View" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-eye"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Wishlist" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-heart-o"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Compare" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-loop2"></use>
-                          </svg>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="glide__slide">
-                  <div class="product">
-                    <div class="product__header">
-                      <img src="/images/products/sumsung/samsung3.jpeg" alt="product">
-                    </div>
-                    <div class="product__footer">
-                      <h3>Samsung Galaxy</h3>
-                      <div class="rating">
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-empty"></use>
-                        </svg>
-                      </div>
-                      <div class="product__price">
-                        <h4>$850</h4>
-                      </div>
-                      <a href="#"><button type="submit" class="product__btn">Add To Cart</button></a>
-                    </div>
-                    <ul>
-                      <li>
-                        <a data-tip="Quick View" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-eye"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Wishlist" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-heart-o"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Compare" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-loop2"></use>
-                          </svg>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="glide__slide">
-                  <div class="product">
-                    <div class="product__header">
-                      <img src="./images/products/iPhone/iphone2.jpeg" alt="product">
-                    </div>
-                    <div class="product__footer">
-                      <h3>Apple iPhone 11</h3>
-                      <div class="rating">
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-empty"></use>
-                        </svg>
-                      </div>
-                      <div class="product__price">
-                        <h4>$450</h4>
-                      </div>
-                      <a href="#"><button type="submit" class="product__btn">Add To Cart</button></a>
-                    </div>
-                    <ul>
-                      <li>
-                        <a data-tip="Quick View" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-eye"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Wishlist" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-heart-o"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Compare" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-loop2"></use>
-                          </svg>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="glide__slide">
-                  <div class="product">
-                    <div class="product__header">
-                      <img src="images/products/headphone/headphone2.jpeg" alt="product">
-                    </div>
-                    <div class="product__footer">
-                      <h3>Sony WH-CH510</h3>
-                      <div class="rating">
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-empty"></use>
-                        </svg>
-                      </div>
-                      <div class="product__price">
-                        <h4>$300</h4>
-                      </div>
-                      <a href="#"><button type="submit" class="product__btn">Add To Cart</button></a>
-                    </div>
-                    <ul>
-                      <li>
-                        <a data-tip="Quick View" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-eye"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Wishlist" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-heart-o"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Compare" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-loop2"></use>
-                          </svg>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="glide__slide">
-                  <div class="product">
-                    <div class="product__header">
-                      <img src="images/products/sumsung/samsung1.jpeg" alt="product">
-                    </div>
-                    <div class="product__footer">
-                      <h3>Samsung Galaxy</h3>
-                      <div class="rating">
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-empty"></use>
-                        </svg>
-                      </div>
-                      <div class="product__price">
-                        <h4>$300</h4>
-                      </div>
-                      <a href="#"><button type="submit" class="product__btn">Add To Cart</button></a>
-                    </div>
-                    <ul>
-                      <li>
-                        <a data-tip="Quick View" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-eye"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Wishlist" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-heart-o"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Compare" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-loop2"></use>
-                          </svg>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="glide__slide">
-                  <div class="product">
-                    <div class="product__header">
-                      <img src="images/products/headphone/headphone1.jpeg" alt="product">
-                    </div>
-                    <div class="product__footer">
-                      <h3>Sony WH-CH510</h3>
-                      <div class="rating">
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-empty"></use>
-                        </svg>
-                      </div>
-                      <div class="product__price">
-                        <h4>$250</h4>
-                      </div>
-                      <a href="#"><button type="submit" class="product__btn">Add To Cart</button></a>
-                    </div>
-                    <ul>
-                      <li>
-                        <a data-tip="Quick View" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-eye"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Wishlist" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-heart-o"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Compare" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-loop2"></use>
-                          </svg>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                </li>
-                <li class="glide__slide">
-                  <div class="product">
-                    <div class="product__header">
-                      <img src="images/products/iPhone/iphone1.jpeg" alt="product">
-                    </div>
-                    <div class="product__footer">
-                      <h3>Apple iPhone XR</h3>
-                      <div class="rating">
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-                        </svg>
-                        <svg>
-                          <use xlink:href="./images/sprite.svg#icon-star-empty"></use>
-                        </svg>
-                      </div>
-                      <div class="product__price">
-                        <h4>$550</h4>
-                      </div>
-                      <a href="#"><button type="submit" class="product__btn">Add To Cart</button></a>
-                    </div>
-                    <ul>
-                      <li>
-                        <a data-tip="Quick View" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-eye"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Wishlist" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-heart-o"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Compare" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-loop2"></use>
-                          </svg>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
+                </c:forEach>
+                
 
               </ul>
             </div>
@@ -673,23 +253,10 @@
             </div>
           </div>
         </div>
-      </section>
-
-      
-
-    <!-- Facility Section -->
-    
+      </section>   
     </div>
-
-    
-
-    
-
-   
-
   </main>
-
-  <!-- End Main -->
+ <!-- End Main -->
 
   <!-- Footer -->
   <footer id="footer" class="section footer">
