@@ -78,6 +78,9 @@ public class UserServlet extends HttpServlet {
                 case "/listUser":
                 	listUser(request, response);
                     break;
+                case "/listUrun":
+                	listUrun(request, response);
+                    break;
                 default:
                     listUrun(request, response);
                     break;
@@ -145,7 +148,7 @@ public class UserServlet extends HttpServlet {
     	    throws SQLException, IOException, ServletException {
     	        List < Urun > listUrun= urunDao.getAllUrun();
     	        request.setAttribute("listUrun", listUrun);
-    	        RequestDispatcher dispatcher = request.getRequestDispatcher("user-list.jsp");
+    	        RequestDispatcher dispatcher = request.getRequestDispatcher("Index.jsp");
     	        dispatcher.forward(request, response);
     	    }
 

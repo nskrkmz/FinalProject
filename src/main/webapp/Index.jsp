@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.io.*" %> 
     
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +32,15 @@
 	
 	
   <title>Phone Shop</title>
+  
+  <style type="text/css">
+  .olcu {
+    
+     background-size: contain;
+
+    
+    }
+  </style>
 </head>
 
 <body>
@@ -166,45 +177,41 @@
             <h1 class="primary__title">Products</h1>
           </div>
         </div>
-        <div class="container" data-aos="fade-up" data-aos-duration="1200">
-          <div class="glide" id="glide_2">
-            <div class="glide__track" data-glide-el="track">
-              <ul class="glide__slides latest-center">
-              
-              
-              <c:forEach var="urun" items="${listUrun}">
-              
-              
-                <li class="glide__slide">
+         <div align="center">
+        <table border="1" cellpadding="5">
+            
+            
+            <%
+
+String connectionURL = "jdbc:mysql://localhost:3306/eticaret";
+Connection connection = null;
+Statement statement = null;
+ResultSet rs = null;
+Class.forName("com.mysql.jdbc.Driver").newInstance();
+connection = DriverManager.getConnection(connectionURL, "root", "");
+statement = connection.createStatement();
+String QueryString = "SELECT * from urun";
+rs = statement.executeQuery(QueryString);
+
+%>
+
+<%
+while (rs.next()) {
+%>
+
+                 <li class="glide__slide">
                   <div class="product">
                     <div class="product__header">
-                      <img src="/images/products/iPhone/iphone6.jpeg" alt="product">
+                          <img class="olcu" src="images/products/headphone/<%=rs.getString(7)%>" >
+                          
+
                     </div>
                     <div class="product__footer"s>
-                      <h3><c:out value="${urun.name}"/></h3>
-                      <h6><c:out value="${urun.urunKodu}"/></h6>
-                      <div class="rating">
-                        <svg>
-                        
-                          
-                          <img src="images/sprite.svg#icon-star-full" alt="product">
-                          
-                        </svg>
-                        <svg>
-                          <img src="images/sprite.svg#icon-star-full" alt="product">
-                        </svg>
-                        <svg>
-                          <img src="images/sprite.svg#icon-star-full" alt="product">
-                        </svg>
-                        <svg>
-                          <img src="images/sprite.svg#icon-star-full" alt="product">
-                        </svg>
-                        <svg>
-                          <img src="images/sprite.svg#icon-star-empty" alt="product">
-                        </svg>
-                      </div>
+                      <h3><%=rs.getString(2)%></h3>
+                      <h6><%=rs.getString(3)%></h6>
+                      
                       <div class="product__price">
-                        <h4><c:out value="${urun.satisFiyat}"/></h4>
+                        <h4><%=rs.getInt(5)%></h4>
                       </div>
                       <a href="#"><button type="submit" class="product__btn">Sepete Ekle</button></a>
                     </div>
@@ -233,26 +240,17 @@
                     </ul>
                   </div>
                 </li>
-                </c:forEach>
+                <% } %>
                 
+<%
+	rs.close();
+	statement.close();
+	connection.close();
+%>
 
-              </ul>
-            </div>
-
-            <div class="glide__arrows" data-glide-el="controls">
-              <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
-                <svg>
-                  <use xlink:href="./images/sprite.svg#icon-arrow-left2"></use>
-                </svg>
-              </button>
-              <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
-                <svg>
-                  <use xlink:href="./images/sprite.svg#icon-arrow-right2"></use>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
+            
+      </table>
+      </div>
       </section>   
     </div>
   </main>
@@ -350,316 +348,11 @@
   <!-- Animate On Scroll -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
  <!-- Custom JavaScript -->
-  <script src="js/products.js"></script>
-  <script src="js/index.js"></script>
   <script src="js/slider.js"></script>
   
-  <script type="text/javascript">
-  const getProducts = async () => {
-	  try {
-	    const results = await fetch("./data/products.json");
-	    const data = await results.json();
-	    const products = data.products;
-	    return products;
-	  } catch (err) {
-	    console.log(err);
-	  }
-	};
 
-	/*
-	=============
-	Load Category Products
-	=============
-	 */
-	const categoryCenter = document.querySelector(".category__center");
-
-	window.addEventListener("DOMContentLoaded", async function () {
-	  const products = await getProducts();
-	  displayProductItems(products);
-	});
-
-	const displayProductItems = items => {
-	  let displayProduct = items.map(
-	    product => ` 
-	                  <div class="product category__products">
-	                    <div class="product__header">
-	                      <img src=${product.image} alt="product">
-	                    </div>
-	                    <div class="product__footer">
-	                      <h3>${product.title}</h3>
-	                      <div class="rating">
-	                        <svg>
-	                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-	                        </svg>
-	                        <svg>
-	                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-	                        </svg>
-	                        <svg>
-	                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-	                        </svg>
-	                        <svg>
-	                          <use xlink:href="./images/sprite.svg#icon-star-full"></use>
-	                        </svg>
-	                        <svg>
-	                          <use xlink:href="./images/sprite.svg#icon-star-empty"></use>
-	                        </svg>
-	                      </div>
-	                      <div class="product__price">
-	                        <h4>$${product.price}</h4>
-	                      </div>
-	                      <a href="#"><button type="submit" class="product__btn">Add To Cart</button></a>
-	                    </div>
-	                  <ul>
-	                      <li>
-	                        <a data-tip="Quick View" data-place="left" href="#">
-	                          <svg>
-	                            <use xlink:href="./images/sprite.svg#icon-eye"></use>
-	                          </svg>
-	                        </a>
-	                      </li>
-	                      <li>
-	                        <a data-tip="Add To Wishlist" data-place="left" href="#">
-	                          <svg>
-	                            <use xlink:href="./images/sprite.svg#icon-heart-o"></use>
-	                          </svg>
-	                        </a>
-	                      </li>
-	                      <li>
-	                        <a data-tip="Add To Compare" data-place="left" href="#">
-	                          <svg>
-	                            <use xlink:href="./images/sprite.svg#icon-loop2"></use>
-	                          </svg>
-	                        </a>
-	                      </li>
-	                  </ul>
-	                  </div>
-	                  `
-	  );
-
-	  displayProduct = displayProduct.join("");
-	  if (categoryCenter) {
-	    categoryCenter.innerHTML = displayProduct;
-	  }
-	};
-
-	/*
-	=============
-	Filtering
-	=============
-	 */
-
-	const filterBtn = document.querySelectorAll(".filter-btn");
-	const categoryContainer = document.getElementById("category");
-
-	if (categoryContainer) {
-	  categoryContainer.addEventListener("click", async e => {
-	    const target = e.target.closest(".section__title");
-	    if (!target) return;
-
-	    const id = target.dataset.id;
-	    const products = await getProducts();
-
-	    if (id) {
-	      // remove active from buttons
-	      Array.from(filterBtn).forEach(btn => {
-	        btn.classList.remove("active");
-	      });
-	      target.classList.add("active");
-
-	      // Load Products
-	      let menuCategory = products.filter(product => {
-	        if (product.category === id) {
-	          return product;
-	        }
-	      });
-
-	      if (id === "All Products") {
-	        displayProductItems(products);
-	      } else {
-	        displayProductItems(menuCategory);
-	      }
-	    }
-	  });
-	}
-
-	/*
-	=============
-	Product Details Left
-	=============
-	 */
-	const pic1 = document.getElementById("pic1");
-	const pic2 = document.getElementById("pic2");
-	const pic3 = document.getElementById("pic3");
-	const pic4 = document.getElementById("pic4");
-	const pic5 = document.getElementById("pic5");
-	const picContainer = document.querySelector(".product__pictures");
-	const zoom = document.getElementById("zoom");
-	const pic = document.getElementById("pic");
-
-	// Picture List
-	const picList = [pic1, pic2, pic3, pic4, pic5];
-
-	// Active Picture
-	let picActive = 1;
-
-	["mouseover", "touchstart"].forEach(event => {
-	  if (picContainer) {
-	    picContainer.addEventListener(event, e => {
-	      const target = e.target.closest("img");
-	      if (!target) return;
-	      const id = target.id.slice(3);
-	      changeImage(`./images/products/iPhone/iphone${id}.jpeg`, id);
-	    });
-	  }
-	});
-
-	// change active image
-	const changeImage = (imgSrc, n) => {
-	  // change the main image
-	  pic.src = imgSrc;
-	  // change the background-image
-	  zoom.style.backgroundImage = `url(${imgSrc})`;
-	  //   remove the border from the previous active side image
-	  picList[picActive - 1].classList.remove("img-active");
-	  // add to the active image
-	  picList[n - 1].classList.add("img-active");
-	  //   update the active side picture
-	  picActive = n;
-	};
-
-	/*
-	=============
-	Product Details Bottom
-	=============
-	 */
-
-	const btns = document.querySelectorAll(".detail-btn");
-	const detail = document.querySelector(".product-detail__bottom");
-	const contents = document.querySelectorAll(".content");
-
-	if (detail) {
-	  detail.addEventListener("click", e => {
-	    const target = e.target.closest(".detail-btn");
-	    if (!target) return;
-
-	    const id = target.dataset.id;
-	    if (id) {
-	      Array.from(btns).forEach(btn => {
-	        // remove active from all btn
-	        btn.classList.remove("active");
-	        e.target.closest(".detail-btn").classList.add("active");
-	      });
-	      // hide other active
-	      Array.from(contents).forEach(content => {
-	        content.classList.remove("active");
-	      });
-	      const element = document.getElementById(id);
-	      element.classList.add("active");
-	    }
-	  });
-	}
-
-  </script>
   
-  <script type="text/javascript">
-  /*
-  =============
-  Navigation
-  =============
-   */
-  const navOpen = document.querySelector(".nav__hamburger");
-  const navClose = document.querySelector(".close__toggle");
-  const menu = document.querySelector(".nav__menu");
-  const scrollLink = document.querySelectorAll(".scroll-link");
-  const navContainer = document.querySelector(".nav__menu");
-
-  navOpen.addEventListener("click", () => {
-    menu.classList.add("open");
-    document.body.classList.add("active");
-    navContainer.style.left = "0";
-    navContainer.style.width = "30rem";
-  });
-
-  navClose.addEventListener("click", () => {
-    menu.classList.remove("open");
-    document.body.classList.remove("active");
-    navContainer.style.left = "-30rem";
-    navContainer.style.width = "0";
-  });
-
-  /*
-  =============
-  PopUp
-  =============
-   */
-  const popup = document.querySelector(".popup");
-  const closePopup = document.querySelector(".popup__close");
-
-  if (popup) {
-    closePopup.addEventListener("click", () => {
-      popup.classList.add("hide__popup");
-    });
-
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        popup.classList.remove("hide__popup");
-      }, 500);
-    });
-  }
-
-  /*
-  =============
-  Fixed Navigation
-  =============
-   */
-
-  const navBar = document.querySelector(".navigation");
-  const gotoTop = document.querySelector(".goto-top");
-
-  // Smooth Scroll
-  Array.from(scrollLink).map(link => {
-    link.addEventListener("click", e => {
-      // Prevent Default
-      e.preventDefault();
-
-      const id = e.currentTarget.getAttribute("href").slice(1);
-      const element = document.getElementById(id);
-      const navHeight = navBar.getBoundingClientRect().height;
-      const fixNav = navBar.classList.contains("fix__nav");
-      let position = element.offsetTop - navHeight;
-
-      if (!fixNav) {
-        position = position - navHeight;
-      }
-
-      window.scrollTo({
-        left: 0,
-        top: position,
-      });
-      navContainer.style.left = "-30rem";
-      document.body.classList.remove("active");
-    });
-  });
-
-  // Fix NavBar
-
-  window.addEventListener("scroll", e => {
-    const scrollHeight = window.pageYOffset;
-    const navHeight = navBar.getBoundingClientRect().height;
-    if (scrollHeight > navHeight) {
-      navBar.classList.add("fix__nav");
-    } else {
-      navBar.classList.remove("fix__nav");
-    }
-
-    if (scrollHeight > 300) {
-      gotoTop.classList.add("show-top");
-    } else {
-      gotoTop.classList.remove("show-top");
-    }
-  });
-
-  </script>
+ 
   
   <script type="text/javascript">
   /*
@@ -755,27 +448,7 @@
   }
 
   // News
-  if (slider5) {
-    new Glide("#glide_5", {
-      type: "carousel",
-      startAt: 0,
-      perView: 3,
-      rewin: false,
-      autoplay: 3000,
-      animationDuration: 800,
-      animationTimingFunc: "cubic-bezier(0.165, 0.840, 0.440, 1.000)",
-      breakpoints: {
-        998: {
-          perView: 2,
-        },
-        768: {
-          perView: 1,
-        },
-      },
-    }).mount();
-  }
-
-  AOS.init();
+  
 
   </script>
   
