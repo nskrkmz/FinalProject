@@ -10,7 +10,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
- 
+  
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&display=swap" rel="stylesheet" />
@@ -199,45 +199,21 @@ rs = statement.executeQuery(QueryString);
 while (rs.next()) {
 %>
 
+
                  <li class="glide__slide">
                   <div class="product">
-                    <div class="product__header">
-                          <img class="olcu" src="images/products/headphone/<%=rs.getString(7)%>" >
-                          
-
+                    <div class="product__header"> 
+                          <img src="/FinalProject/target/m2e-wtp/web-resources/images/products/headphone/<%=rs.getString(7)%>" >
                     </div>
                     <div class="product__footer"s>
                       <h3><%=rs.getString(2)%></h3>
                       <h6><%=rs.getString(3)%></h6>
-                      
                       <div class="product__price">
                         <h4><%=rs.getInt(5)%></h4>
                       </div>
                       <a href="#"><button type="submit" class="product__btn">Sepete Ekle</button></a>
                     </div>
-                    <ul>
-                      <li>
-                        <a data-tip="Quick View" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-eye"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Wishlist" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-heart-o"></use>
-                          </svg>
-                        </a>
-                      </li>
-                      <li>
-                        <a data-tip="Add To Compare" data-place="left" href="#">
-                          <svg>
-                            <use xlink:href="./images/sprite.svg#icon-loop2"></use>
-                          </svg>
-                        </a>
-                      </li>
-                    </ul>
+                    
                   </div>
                 </li>
                 <% } %>
@@ -247,6 +223,7 @@ while (rs.next()) {
 	statement.close();
 	connection.close();
 %>
+
 
             
       </table>
@@ -321,15 +298,7 @@ while (rs.next()) {
         </div>
       </div>
     </div>
-    <div class="footer__bottom">
-      <div class="footer-bottom__box">
-
-      </div>
-      <div class="footer-bottom__box">
-
-      </div>
-    </div>
-    </div>
+    
   </footer>
   <!-- End Footer -->
 
